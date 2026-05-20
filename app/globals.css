@@ -6,13 +6,6 @@
   --radius: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 @theme {
   /* Screens / Breakpoints */
   --breakpoint-sm: 640px;
@@ -24,26 +17,29 @@
   --breakpoint-3xl: 1920px;
 
   /* Font Sizes with Line Heights */
-  --font-size-xs: 11px;
-  --line-height-xs: 16px;
-  --font-size-sm: 12px;
+  --text-xs: 11px;
+  --line-height: 16px;
+  --text-sm: 12px;
   --line-height-sm: 18px;
-  --font-size-base: 14px;
+  --text-base: 14px;
   --line-height-base: 22px;
-  --font-size-md: 14px;
+  --text-md: 14px;
   --line-height-md: 22px;
-  --font-size-xl: 16px;
+  --text-xl: 16px;
   --line-height-xl: 24px;
-  --font-size-2xl: 18px;
+  --text-2xl: 18px;
   --line-height-2xl: 26px;
-  --font-size-3xl: 20px;
+  --text-3xl: 20px;
   --line-height-3xl: 28px;
-  --font-size-4xl: 24px;
+  --text-4xl: 24px;
   --line-height-4xl: 36px;
-  --font-size-5xl: 32px;
+  --text-5xl: 32px;
   --line-height-5xl: 48px;
-  --font-size-6xl: 40px;
+  --text-6xl: 40px;
   --line-height-6xl: 60px;
+
+  /* Font Family */
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
   /* Base Colors */
   --color-transparent: transparent;
@@ -58,10 +54,10 @@
   --color-neutral-50: #ffffff;
   --color-neutral-100: #dfe4e8;
   --color-neutral-200: #d4d7db;
-  --color-neutral-300: #aba9c1;
+  --color-neutral-300: #e1e1e1;
   --color-neutral-400: #a19fb7;
   --color-neutral-500: #838199;
-  --color-neutral-600: #68667b;
+  --color-neutral-600: #646464;
   --color-neutral-700: #57556c;
   --color-neutral-800: #4d4a64;
   --color-neutral-900: #3c3955;
@@ -156,11 +152,11 @@
   --height-menu-bottom: calc(env(safe-area-inset-bottom) + 60px);
 
   /* Width - Extended */
-  --width-container-desktop: 1256px;
+  --width-container-desktop: 1340px;
 
   /* Max/Min Width - Extended */
-  --max-width-container-desktop: 1256px;
-  --min-width-container-desktop: 1256px;
+  --max-width-container-desktop: 1340px;
+  --min-width-container-desktop: 1340px;
 
   /* Z-Index */
   --z-index-overlay: 50;
@@ -171,12 +167,15 @@
   --z-index-background: -1;
 }
 
-html.dark {
-  color-scheme: dark;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-family-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.row {
+  max-width: var(--max-width-container-desktop);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
 }
