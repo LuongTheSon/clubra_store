@@ -10,7 +10,7 @@ interface UseProductDetailReturn {
   error: string | null;
 }
 
-export function useProductDetail(id: number): UseProductDetailReturn {
+export function useProductDetail(id: string): UseProductDetailReturn {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

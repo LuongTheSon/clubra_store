@@ -16,9 +16,17 @@ const CollectionsPage = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
+
   return (
     <section>
-      <div className="row flex justify-between gap-20">
+      <div className="inner flex justify-between gap-20">
         <div className="w-[315px] shrink-0">
           <h2 className="mb-6 text-4xl text-neutral-900">FILLTERS</h2>
           <FilltersBox />
@@ -39,6 +47,7 @@ const CollectionsPage = () => {
             {products.map((product) => (
               <ProductCard
                 key={product._id}
+                id={product._id.toString()}
                 image={product.image[0]}
                 name={product.name}
                 price={product.price}

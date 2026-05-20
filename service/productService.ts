@@ -23,7 +23,7 @@ class ProductService {
   }
 
   // Function to fetch a product by ID
-  async getProductById(id: number): Promise<Product> {
+  async getProductById(id: string): Promise<Product> {
     try {
       // Call API GET /api/products/[id]
       const response = await axios.get<ApiResponse<Product>>(`${API_BASE_URL}/api/products/${id}`);

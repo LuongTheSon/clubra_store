@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed left-0 right-0 top-0 z-50 bg-white py-[29px_19px]">
-      <div className="row flex items-center justify-between">
+      <div className="inner flex items-center justify-between">
         <h1 className="flex h-[53px] w-[140px] items-center">
           <Link href="/">
             <Image

@@ -6,7 +6,9 @@ export async function GET(
   { params }: { params: { id: string } }
 ): Promise<Response> {
   try {
-    const product: Product | undefined = mockProducts.find((p) => p._id === params.id);
+    const { id } = await params;
+
+    const product: Product | undefined = mockProducts.find((p) => p._id === id);
 
     if (!product) {
       return Response.json(

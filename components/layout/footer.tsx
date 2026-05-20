@@ -27,7 +27,7 @@ const Footer = () => {
   ];
   return (
     <div className="mt-20">
-      <div className="row">
+      <div className="inner">
         <div className="flex items-center justify-between">
           <div className="w-1/2">
             <Link href="/" className="flex h-[78px] w-[190px] items-center">
