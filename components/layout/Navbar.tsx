@@ -5,9 +5,13 @@ import { usePathname } from "next/navigation";
 import { images } from "@/public/images/assets";
 import Link from "next/link";
 import SearchButton from "./SearchButton";
+import { useShop } from "@/hooks/useShop";
+import { useSearchStore } from "@/lib/store/searchStore";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { totalItems } = useShop();
+  const { showSearch, setShowSearch } = useSearchStore();
 
   const navLinks = [
     {
@@ -55,11 +59,14 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="flex items-center gap-8">
-          <SearchButton onToggle={() => {}} disabled={pathname === "/products" ? false : true} />
+          <SearchButton
+            onToggle={() => setShowSearch(!showSearch)}
+            disabled={pathname === "/collections" ? false : true}
+          />
           <Link href="/cart" className="relative z-10 cursor-pointer">
             <Handbag className="size-6" />
-            <span className="absolute -bottom-2 -right-2.5 -z-10 flex size-5 items-center justify-center rounded-full bg-neutral-950 text-center text-xs text-white">
-              0
+            <span className="absolute -bottom-2 -right-2.5 z-10 flex size-5 items-center justify-center rounded-full bg-neutral-950 text-center text-xs text-white">
+              {totalItems}
             </span>
           </Link>
           <Link href="/login" className="relative z-10 cursor-pointer">

@@ -1,6 +1,12 @@
 import FillerCheckbox from "./FillerCheckbox";
 
-export default function FilltersBox() {
+export default function FilltersBox({
+  toggleBrand,
+  toggleType,
+}: {
+  toggleBrand: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  toggleType: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   const categories = [
     { id: 1, name: "Nike", value: "nike" },
     { id: 2, name: "Adidas", value: "adidas" },
@@ -12,11 +18,11 @@ export default function FilltersBox() {
   const types = [
     {
       name: "High Top",
-      value: "hightop",
+      value: "highTop",
     },
     {
       name: "Low Top",
-      value: "lowtop",
+      value: "lowTop",
     },
     {
       name: "Mule",
@@ -25,8 +31,13 @@ export default function FilltersBox() {
   ];
   return (
     <>
-      <FillerCheckbox title="Categories" list={categories} className="mb-6" />
-      <FillerCheckbox title="Types" list={types} />
+      <FillerCheckbox
+        title="Categories"
+        list={categories}
+        className="mb-6"
+        toggleBrand={toggleBrand}
+      />
+      <FillerCheckbox title="Types" list={types} toggleType={toggleType} />
     </>
   );
 }

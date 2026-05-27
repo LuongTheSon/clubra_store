@@ -3,13 +3,17 @@
 import ProductDescription from "@/components/features/Products/ProductDescription";
 import ProductRate from "@/components/features/Products/ProductRate";
 import Button from "@/components/ui/Button";
+import { useShop } from "@/hooks/useShop";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ProductDetailPage() {
   const params = useParams();
+
+  const { formatCurrency, addItem } = useShop();
 
   const id = params.id as string;
   const { product, isLoading, error } = useProductDetail(id);
@@ -17,9 +21,26 @@ export default function ProductDetailPage() {
   const [selectedThumbnail, setSelectedThumbnail] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState("");
 
-  console.log(selectedSize);
-
   const thumbnail = selectedThumbnail || product?.image[0];
+
+  const handleAddToCart = () => {
+    if (!product) return;
+
+    if (!selectedSize) {
+      toast.error("Chưa chọn size sản phẩm!");
+      return;
+    }
+
+    addItem({
+      id: `${product._id}-${selectedSize}`,
+      productId: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.image[0],
+      size: selectedSize,
+      quantity: 1,
+    });
+  };
 
   // Loading state
   if (isLoading) {
@@ -63,11 +84,11 @@ export default function ProductDetailPage() {
         <div className="mb-32">
           <h1 className="mb-6 text-5xl font-medium leading-[1.3]">{product.name}</h1>
           <ProductRate />
-          <h4 className="mb-8 text-5xl font-medium">${product.price}</h4>
+          <h4 className="mb-8 text-5xl font-medium">{formatCurrency(product.price)}</h4>
           <p className="mb-8 text-xl leading-[1.8] tracking-wide">{product.description}</p>
           <div className="mb-10">
             <p className="mb-5 text-3xl font-medium text-neutral-600">Select Size</p>
-            <div className="grid grid-cols-5 gap-4">
+            <div className="flex flex-wrap gap-4">
               {product.sizes.map((item, index) => (
                 <button
                   key={index}
@@ -79,7 +100,9 @@ export default function ProductDetailPage() {
               ))}
             </div>
           </div>
-          <Button className="mb-10">ADD TO CART</Button>
+          <Button className="mb-10" onClick={handleAddToCart}>
+            ADD TO CART
+          </Button>
           <p className="border-t border-neutral-500 pt-7 text-xl leading-[1.8] text-neutral-600">
             100% Original product.
             <br />

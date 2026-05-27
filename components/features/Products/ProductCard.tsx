@@ -1,3 +1,4 @@
+import { useShop } from "@/hooks/useShop";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +13,7 @@ export default function ProductCard({
   name: string;
   price: number;
 }) {
+  const { formatCurrency } = useShop();
   return (
     <Link href={`/collections/${id}`}>
       <figure className="mb-5 w-full">
@@ -24,7 +26,7 @@ export default function ProductCard({
         />
       </figure>
       <h4 className="text-md text-neutral-1100 mb-2 font-medium">{name}</h4>
-      <p className="text-neutral-1000 text-xl font-medium">${price}</p>
+      <p className="text-neutral-1000 text-xl font-medium">{formatCurrency(price)}</p>
     </Link>
   );
 }

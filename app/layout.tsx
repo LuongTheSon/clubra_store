@@ -3,6 +3,8 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/Navbar";
+import { Toaster } from "sonner";
+import Search from "@/components/layout/Search";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -23,8 +25,12 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Navbar />
-        <div className="pt-[160px]">{children}</div>
+        <div className="pt-[160px]">
+          <Search />
+          {children}
+        </div>
         <Footer />
+        <Toaster position="top-right" />
       </body>
     </html>
   );
